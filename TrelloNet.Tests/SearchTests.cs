@@ -1,8 +1,8 @@
-﻿using System;
+﻿using ExpectedObjects;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ExpectedObjects;
-using NUnit.Framework;
 
 namespace TrelloNet.Tests
 {
@@ -10,10 +10,20 @@ namespace TrelloNet.Tests
     public class SearchTests : TrelloTestBase
     {
         [Test, Ignore("Search over actions is temporarily disabled and will return no results according to https://trello.com/docs/api/search/index.html")]
+        public void Search_WithActionsSince_ReturnsCorrectActions()
+        {
+            var shouldBeOneAction = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-18")).Actions;
+            var shouldBeEmpty = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-19")).Actions;
+
+            Assert.That(shouldBeOneAction.Count(), Is.EqualTo(1));
+            Assert.That(shouldBeEmpty.Count(), Is.EqualTo(0));
+        }
+
+        [Test, Ignore("Search over actions is temporarily disabled and will return no results according to https://trello.com/docs/api/search/index.html")]
         public void Search_WithTestQuery_ReturnsCorrectAction()
         {
-            var expected = new List<Action> 
-			{ 
+            var expected = new List<Action>
+			{
 				new CommentCardAction
 				{
 						Id = "4f3f5d073cf351b24302417d",
@@ -33,7 +43,7 @@ namespace TrelloNet.Tests
 							AvatarHash = "bb5dc0160e87c6573ef69c9d4a284bd2",
 							Initials = "OD"
 						}
-				}					
+				}
 			}.ToExpectedObject();
 
             var actual = _trelloReadOnly.Search("test").Actions;
@@ -50,7 +60,7 @@ namespace TrelloNet.Tests
                 Name = "Welcome Board",
                 Desc = "A test description",
                 IdOrganization = Constants.TestOrganizationId,
-                Pinned = true,
+                Pinned = false,
                 Url = "https://trello.com/b/J9JUdoYV/welcome-board",
                 Id = Constants.WelcomeBoardId,
                 Prefs = new BoardPreferences
@@ -62,12 +72,16 @@ namespace TrelloNet.Tests
                 },
                 LabelNames = new Dictionary<Color, string>
 				{
-					{ Color.Yellow, "" },
-					{ Color.Red, "" },
-					{ Color.Purple, "" },
-					{ Color.Orange, "" },
 					{ Color.Green, "label name" },
-					{ Color.Blue, "" },
+ 					{ Color.Yellow, "" },
+					{ Color.Orange, "" },
+ 					{ Color.Red, "" },
+ 					{ Color.Purple, "" },
+ 					{ Color.Blue, "" },
+					{ Color.Pink, "" },
+					{ Color.Sky, "" },
+					{ Color.Lime, "" },
+					{ Color.Black, "" },
 				}
             }.ToExpectedObject();
 
@@ -90,7 +104,7 @@ namespace TrelloNet.Tests
                 Due = new DateTime(2015, 01, 01, 09, 00, 00),
                 Labels = new List<Card.Label>(),
                 IdShort = 1,
-				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
+                Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",
                 ShortUrl = "https://trello.com/c/pD2NljjG",
                 Pos = 32768,
                 DateLastActivity = new DateTime(2012, 03, 24, 22, 48, 26, 596),
@@ -132,24 +146,6 @@ namespace TrelloNet.Tests
             expected.ShouldMatch(actual);
         }
 
-        [Test]
-        public void Search_WithTestQueryButWithoutMemberModelType_ReturnsNoMembers()
-        {
-            var actual = _trelloReadOnly.Search("Trello.NET Test User", modelTypes: new[] { ModelType.Actions }).Members;
-
-            Assert.That(actual.Count(), Is.EqualTo(0));
-        }
-
-        [Test, Ignore("Search over actions is temporarily disabled and will return no results according to https://trello.com/docs/api/search/index.html")]
-        public void Search_WithActionsSince_ReturnsCorrectActions()
-        {
-            var shouldBeOneAction = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-18")).Actions;
-            var shouldBeEmpty = _trelloReadOnly.Search("test", actionsSince: DateTime.Parse("2012-02-19")).Actions;
-
-            Assert.That(shouldBeOneAction.Count(), Is.EqualTo(1));
-            Assert.That(shouldBeEmpty.Count(), Is.EqualTo(0));
-        }
-
         [Test, Ignore("Searching for organizations doesn't seem to work in Trello")]
         public void Search_WithTestQuery_ReturnsCorrectOrganization()
         {
@@ -166,6 +162,14 @@ namespace TrelloNet.Tests
             var actual = _trelloReadOnly.Search("Trello.NET Test Organization").Organizations.First();
 
             expected.ShouldEqual(actual);
+        }
+
+        [Test]
+        public void Search_WithTestQueryButWithoutMemberModelType_ReturnsNoMembers()
+        {
+            var actual = _trelloReadOnly.Search("Trello.NET Test User", modelTypes: new[] { ModelType.Actions }).Members;
+
+            Assert.That(actual.Count(), Is.EqualTo(0));
         }
     }
 }

@@ -2,12 +2,14 @@ using RestSharp;
 
 namespace TrelloNet.Internal
 {
-	internal class CardsAddLabelRequest : CardsRequest
-	{
-		public CardsAddLabelRequest(ICardId card, Color color)
-			: base(card, "labels", Method.POST)
-		{
-			this.AddValue(color.ToTrelloString());
-		}
-	}
+    internal class CardsAddLabelRequest : CardsRequest
+    {
+        public CardsAddLabelRequest(ICardId card, Color color)
+            : base(card, "labels", Method.POST)
+        {
+            Guard.NotNull(color, "color");
+
+            this.AddValue(color.ColorName);
+        }
+    }
 }

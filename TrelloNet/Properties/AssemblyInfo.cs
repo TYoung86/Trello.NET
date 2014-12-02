@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Trello.NET")]
+[assembly: AssemblyTitle("Trello.NET (temp fork)")]
 [assembly: AssemblyDescription("A .NET client library for Trello.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Oskar Dillén")]
