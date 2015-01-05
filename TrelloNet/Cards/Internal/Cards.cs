@@ -112,9 +112,19 @@ namespace TrelloNet.Internal
 			_restClient.Request(new CardsAddLabelRequest(card, color));
 		}
 
+		public void AddLabel(ICardId card, ILabelId label)
+		{
+			_restClient.Request(new CardsAddLabelRequest(card, label));
+		}
+
 		public void RemoveLabel(ICardId card, Color color)
 		{
 			_restClient.Request(new CardsRemoveLabelRequest(card, color));
+		}
+
+		public void RemoveLabel(ICardId card, ILabelId label)
+		{
+			_restClient.Request(new CardsRemoveLabelRequest(card, label));
 		}
 
 		public void AddMember(ICardId card, IMemberId member)

@@ -11,5 +11,11 @@ namespace TrelloNet.Internal
 
             AddParameter("color", color.ColorName, ParameterType.UrlSegment);
         }
+
+        public CardsRemoveLabelRequest(ICardId card, ILabelId labelId)
+            : base(card, "idLabels", Method.DELETE)
+        {
+            AddParameter("value", labelId.GetLabelId());
+        }
     }
 }

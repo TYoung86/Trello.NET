@@ -11,5 +11,11 @@ namespace TrelloNet.Internal
 
             this.AddValue(color.ColorName);
         }
+
+        public CardsAddLabelRequest(ICardId card, ILabelId labelId)
+            : base(card, "idLabels", Method.POST)
+        {
+            AddParameter("value", labelId.GetLabelId());
+        }
     }
 }
