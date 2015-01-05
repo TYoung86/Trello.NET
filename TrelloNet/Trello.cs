@@ -15,6 +15,7 @@ namespace TrelloNet
 			Members = new Members(_restClient);
 			Boards = new Boards(_restClient);
 			Lists = new Lists(_restClient);
+			Labels = new Labels(_restClient);
 			Cards = new Cards(_restClient);
 			Checklists = new Checklists(_restClient);
 			Organizations = new Organizations(_restClient);
@@ -29,6 +30,7 @@ namespace TrelloNet
 		public IMembers Members { get; private set; }
 		public IBoards Boards { get; private set; }
 		public ILists Lists { get; private set; }
+		public ILabels Labels { get; private set; }
 		public ICards Cards { get; private set; }
 		public IChecklists Checklists { get; private set; }
 		public IOrganizations Organizations { get; private set; }

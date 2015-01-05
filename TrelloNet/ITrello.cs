@@ -10,6 +10,7 @@ namespace TrelloNet
 		ILists Lists { get; }
 		ICards Cards { get; }
 		IChecklists Checklists { get; }
+		ILabels Labels { get; }
 		IOrganizations Organizations { get; }
 		INotifications Notifications { get; }
 		ITokens Tokens { get; }
