@@ -11,6 +11,7 @@ namespace TrelloNet
 		IAsyncLists Lists { get; }
 		IAsyncCards Cards { get; }
 		IAsyncChecklists Checklists { get; }
+		IAsyncLabels Labels { get; }
 		IAsyncOrganizations Organizations { get; }
 		IAsyncNotifications Notifications { get; }
 		IAsyncTokens Tokens { get; }

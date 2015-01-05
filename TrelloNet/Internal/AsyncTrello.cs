@@ -17,6 +17,7 @@ namespace TrelloNet.Internal
 			Lists = new AsyncLists(_restClient);
 			Cards = new AsyncCards(_restClient);
 			Checklists = new AsyncChecklists(_restClient);
+			Labels = new AsyncLabels(_restClient);
 			Organizations = new AsyncOrganizations(_restClient);
 			Notifications = new AsyncNotifications(_restClient);
 			Tokens = new AsyncTokens(_restClient);
@@ -30,6 +31,7 @@ namespace TrelloNet.Internal
 		public IAsyncLists Lists { get; private set; }
 		public IAsyncCards Cards { get; private set; }
 		public IAsyncChecklists Checklists { get; private set; }
+		public IAsyncLabels Labels { get; private set; }
 		public IAsyncOrganizations Organizations { get; private set; }
 		public IAsyncNotifications Notifications { get; private set; }
 		public IAsyncTokens Tokens { get; private set; }
