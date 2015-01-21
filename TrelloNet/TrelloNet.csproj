@@ -164,6 +164,7 @@
     <Compile Include="Internal\TrelloEnumConverter.cs" />
     <Compile Include="Labels\Internal\AsyncLabels.cs" />
     <Compile Include="Labels\IAsyncLabels.cs" />
+    <Compile Include="Labels\Internal\LabelsForBoardRequest.cs" />
     <Compile Include="Labels\Internal\LabelsChangeColorRequest.cs" />
     <Compile Include="Labels\Internal\LabelsRequest.cs" />
     <Compile Include="Labels\ILabels.cs" />

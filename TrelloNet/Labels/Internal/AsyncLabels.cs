@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace TrelloNet.Internal
 {
@@ -14,6 +15,11 @@ namespace TrelloNet.Internal
         public Task<Label> WithId(string labelId)
         {
             return _restClient.RequestAsync<Label>(new LabelsWithIdRequest(labelId));
+        }
+
+        public Task<IEnumerable<Label>> ForBoard(IBoardId board, int limit = 50)
+        {
+            return _restClient.RequestListAsync<Label>(new LabelsForBoardRequest(board, limit));
         }
 
         public Task<Label> Add(NewLabel label)

@@ -23,7 +23,7 @@ namespace TrelloNet.Internal
 
 		public IEnumerable<List> ForBoard(IBoardId board, ListFilter filter = ListFilter.Open)
 		{
-			return _restClient.Request<List<List>>(new ListsForBoardRequest(board, filter));
+            return _restClient.Request<List<List>>(new ListsForBoardRequest(board, filter));
 		}
 
 		public List Add(NewList list)

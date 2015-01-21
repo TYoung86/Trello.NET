@@ -20,6 +20,13 @@ namespace TrelloNet
         Task<Label> Add(NewLabel newLabel);
 
         /// <summary>
+        /// GET /1/boards/[board_id]/labels
+        /// <br/>
+        /// Required permissions: read
+        /// </summary>
+        Task<IEnumerable<Label>> ForBoard(IBoardId board, int limit = 50);
+
+        /// <summary>
         /// POST /labels
         /// <br />
         /// required permissions: own, write

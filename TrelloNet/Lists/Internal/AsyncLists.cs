@@ -24,7 +24,7 @@ namespace TrelloNet.Internal
 
 		public Task<IEnumerable<List>> ForBoard(IBoardId board, ListFilter filter = ListFilter.Open)
 		{
-			return _restClient.RequestListAsync<List>(new ListsForBoardRequest(board, filter));
+            return _restClient.RequestListAsync<List>(new ListsForBoardRequest(board, filter));
 		}
 
 		public Task<List> Add(NewList list)

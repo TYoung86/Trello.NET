@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TrelloNet.Internal
 {
     internal class Labels : ILabels
@@ -12,6 +14,11 @@ namespace TrelloNet.Internal
         public Label WithId(string labelId)
         {
             return _restClient.Request<Label>(new LabelsWithIdRequest(labelId));
+        }
+
+        public IEnumerable<Label> ForBoard(IBoardId board, int limit = 50)
+        {
+            return _restClient.Request<List<Label>>(new LabelsForBoardRequest(board, limit));
         }
 
         public Label Add(NewLabel label)
