@@ -26,6 +26,8 @@ namespace TrelloNet
 
         public string IdBoard { get; set; }
 
+        public List<string> IdLabels { get; set; }
+
         public string IdList { get; set; }
 
         public List<string> IdMembers { get; set; }
@@ -119,13 +121,6 @@ namespace TrelloNet
 
         public class Checklist : Checklist<CheckItem>
         {
-        }
-
-        public class Label
-        {
-            public Color Color { get; set; }
-
-            public string Name { get; set; }
         }
 
         private class CheckItemState
