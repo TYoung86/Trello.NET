@@ -11,8 +11,6 @@ namespace TrelloNet.Internal
             AddParameter("idBoard", label.IdBoard.GetBoardId());
 
             AddParameter("color", label.Color);
-
-            Guard.RequiredTrelloString(label.Name, "name");
             AddParameter("name", label.Name);
         }
 
