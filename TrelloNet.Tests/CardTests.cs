@@ -40,10 +40,10 @@ namespace TrelloNet.Tests
 		[Test]
 		public void WithId_TheOnlyLabeledCard_ContainsTwoLabels()
 		{
-			var expectedLabels = new List<Card.Label>
+			var expectedLabels = new List<Label>
 			{
-			    new Card.Label { Color = Color.Green, Name = "label name" },
-			    new Card.Label { Color = Color.Red, Name = "" }
+			    new Label { Color = Color.Green, Name = "label name" },
+			    new Label { Color = Color.Red, Name = "" }
 			}.ToExpectedObject();
 
 			var card = _trelloReadOnly.Cards.WithId("4f2b8b4d4f2cb9d16d36851b");
@@ -392,7 +392,9 @@ namespace TrelloNet.Tests
             var actualAttachments = cardAfterAttachment.Attachments.Count;
 
             Assert.That(actualAttachments, Is.EqualTo(expectedAttachments));
-		    Assert.IsNotNullOrEmpty(cardAfterAttachment.Attachments.Last().Url);
+			var url = cardAfterAttachment.Attachments.Last().Url;
+		    Assert.IsNotNull(url);
+		    Assert.IsNotEmpty(url);
             //Not testig mimeType because it always seems to come back null
 
 		    expectedAttachments = card.Attachments.Count;
@@ -631,7 +633,7 @@ namespace TrelloNet.Tests
 				IdList = Constants.WelcomeBoardBasicsListId,
 				IdBoard = Constants.WelcomeBoardId,
 				Due = new DateTime(2015, 01, 01, 09, 00, 00),
-				Labels = new List<Card.Label>(),
+				Labels = new List<Label>(),
 				IdShort = 1,
 				Checklists = new List<Card.Checklist>(),
 				Url = "https://trello.com/c/pD2NljjG/1-welcome-to-trello",

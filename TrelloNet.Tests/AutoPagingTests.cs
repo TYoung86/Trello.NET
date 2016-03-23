@@ -24,7 +24,9 @@ namespace TrelloNet.Tests
 			SetupActionsForBoardToReturn(pageSize, 0, new[] { new Action() });
 			SetupActionsForBoardToReturn(pageSize, 1, Enumerable.Empty<Action>());
 
-			_actions.AutoPaged(pageSize).ForBoard(new BoardId("dummy")).ToList();
+			foreach (var source in _actions.AutoPaged(pageSize).ForBoard(new BoardId("dummy"))) {
+				// ...
+			}
 
 			A.CallTo(() => _actions.ForBoard(A<IBoardId>._, A<IEnumerable<ActionType>>._, A<ISince>._, A<Paging>._)).MustHaveHappened(Repeated.Exactly.Twice);
 		}
@@ -37,7 +39,9 @@ namespace TrelloNet.Tests
 			SetupActionsForBoardToReturn(pageSize, 1, new[] { new Action() });
 			SetupActionsForBoardToReturn(pageSize, 2, Enumerable.Empty<Action>());
 
-			_actions.AutoPaged(pageSize).ForBoard(new BoardId("dummy")).ToList();
+			foreach (var source in _actions.AutoPaged(pageSize).ForBoard(new BoardId("dummy"))) {
+				// ...
+			}
 
 			A.CallTo(() => _actions.ForBoard(A<IBoardId>._, A<IEnumerable<ActionType>>._, A<ISince>._, A<Paging>._)).MustHaveHappened(Repeated.Exactly.Times(3));
 		}
@@ -49,7 +53,9 @@ namespace TrelloNet.Tests
 			SetupActionsForBoardToReturn(pageSize, 0, new[] { new Action() });
 			SetupActionsForBoardToReturn(pageSize, 1, Enumerable.Empty<Action>());
 
-			_actions.AutoPaged(pageSize).ForBoard(new BoardId("dummy")).ToList();
+			foreach (var source in _actions.AutoPaged(pageSize).ForBoard(new BoardId("dummy"))) {
+				// ...
+			}
 
 			A.CallTo(() => _actions.ForBoard(A<IBoardId>._, A<IEnumerable<ActionType>>._, A<ISince>._, A<Paging>._)).MustHaveHappened(Repeated.Exactly.Once);
 		}
@@ -61,7 +67,9 @@ namespace TrelloNet.Tests
 			SetupActionsForBoardToReturn(pageSize, 0, new[] { new Action(), new Action() });
 			SetupActionsForBoardToReturn(pageSize, 1, Enumerable.Empty<Action>());
 
-			_actions.AutoPaged(2).ForBoard(new BoardId("dummy")).ToList();
+			foreach (var source in _actions.AutoPaged(2).ForBoard(new BoardId("dummy"))) {
+				// ...
+			}
 
 			A.CallTo(() => _actions.ForBoard(A<IBoardId>._, A<IEnumerable<ActionType>>._, A<ISince>._, A<Paging>._)).MustHaveHappened(Repeated.Exactly.Twice);
 		}
@@ -73,7 +81,9 @@ namespace TrelloNet.Tests
 			SetupActionsForBoardToReturn(pageSize, 0, new[] { new Action(), new Action() });
 			SetupActionsForBoardToReturn(pageSize, 1, new[] { new Action() });
 
-			_actions.AutoPaged(2).ForBoard(new BoardId("dummy")).ToList();
+			foreach (var source in _actions.AutoPaged(2).ForBoard(new BoardId("dummy"))) {
+				// ...
+			}
 
 			A.CallTo(() => _actions.ForBoard(A<IBoardId>._, A<IEnumerable<ActionType>>._, A<ISince>._, A<Paging>._)).MustHaveHappened(Repeated.Exactly.Twice);
 		}
@@ -86,7 +96,9 @@ namespace TrelloNet.Tests
 			SetupActionsForBoardToReturn(pageSize, 1, new[] { new Action(), new Action() });
 			SetupActionsForBoardToReturn(pageSize, 2, Enumerable.Empty<Action>());
 
-			_actions.AutoPaged(2).ForBoard(new BoardId("dummy")).ToList();
+			foreach (var source in _actions.AutoPaged(2).ForBoard(new BoardId("dummy"))) {
+				// ...
+			}
 
 			A.CallTo(() => _actions.ForBoard(A<IBoardId>._, A<IEnumerable<ActionType>>._, A<ISince>._, A<Paging>._)).MustHaveHappened(Repeated.Exactly.Times(3));
 		}
